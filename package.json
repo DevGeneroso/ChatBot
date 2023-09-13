@@ -1,0 +1,35 @@
+{
+  "name": "total-wtp-bot",
+  "version": "1.0.0",
+  "description": "Bot Whatsapp baseado na lib Venom para exibir o andamento de processos.",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "keywords": [
+    "venom",
+    "node",
+    "whatsapp",
+    "processos"
+  ],
+  "author": "Total Sistemas",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "fs-extra": "^11.1.1",
+    "http": "^0.0.1-security",
+    "https": "^1.0.0",
+    "mysql2": "^3.6.0",
+    "npm-check-updates": "^16.11.1",
+    "socket.io": "^4.7.2",
+    "venom-bot": "^5.0.17"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "type": "module"
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+
+    <title>Total Sistemas - BOT</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./qrcodepage.css" />
+    <link rel="stylesheet" href="./bootstrap-5.0.2-dist/css/bootstrap.min.css">
+  </head>
+
+  <body>
+    <div class="d-flex flex-row bg-image justify-content-center align-items-center" style="background-size: cover; background-image: url('./logoFinal2.jpg'); height: 100vh;">
+      <div id="container" class="row-sm p-5 my-5 border" style="position: absolute;">
+        <div class="row-sm-4">
+          <div>
+            <h2>Insira o n° do telefone</h2>
+            <br/>
+            <div>
+              <input id="idInput" >
+              <br/>
+              <br/><br/>
+              <div id="container2">
+                <div class="d-flex align-items-center" style="margin-top: -10%;">
+                  <div id="load" style="visibility: hidden;">
+                    <span class="loader"></span>
+                  </div>
+                  <div id="criarQRCode" class="d-flex">
+                    <button id="criarQR" onclick="criarSessao()">Gerar QR Code</button>
+                  </div>
+                  <div id="divimg2">
+                    <img id="img2" src="./moldura_qrcode1.png"/>
+                  </div>
+                  <div id="divimg1">
+                    <img id="img1"/>
+                  </div>
+                </div>
+                <button id="recarregarQR" onclick="carregarSessao()" style="visibility: hidden;">Recarregar QR Code</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const socket = io("http://localhost:3000");
+
+      document.getElementById('idInput').addEventListener('input', function (e) {
+        var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+        e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+      });
+
+      function checkMD() {
+        mdStatus = false;
+      }
+
+      function criarSessao(data) {
+        if (document.getElementById("idInput").value == '') {
+          alert("Preencha o campo do telefone!");
+        } else {
+          let num = "55" + document.getElementById("idInput").value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+          if (!num || num.length !== 13) {
+            alert("Número de telefone inválido. Certifique-se de que o número está correto.");
+          } else {
+            checkMD();
+            socket.emit("create-session", {
+              id: num,
+              md: mdStatus,
+            });
+
+            socket.on("number-exists", (exists) => {
+              if (exists) {
+                document.getElementById("criarQRCode").style = "visibility: hidden;";
+                document.getElementById("criarQR").style = "visibility: hidden;";
+                document.getElementById("load").style = "visibility: visible;";
+                document.getElementById("load").style = "z-index: 3;";
+
+                socket.on("qrcode", (data) => {
+                  document.getElementById("divimg1").style = "position: absolute; margin-left: 6%; width: 13.48em; height: 13.48em; z-index: 5;";
+                  document.getElementById("img1").src = num + ".png";
+                  document.getElementById("img1").style = "width: 100%; height: 100%;"
+                });
+
+                setTimeout(function () {
+                  document.getElementById('recarregarQR').style = "visibility: visible;";
+                }, 15000);
+
+                socket.emit("qrcode");
+              }
+            })
+
+            socket.on("logado", () => {
+              document.getElementById("divimg1").style = "position: absolute; margin-left: 6%; width: 13.48em; height: 13.48em; z-index: 5;";
+              document.getElementById("img1").src = "./conectado.jpg";
+              document.getElementById("img1").style = "width: 100%; height: 100%;"
+            })
+          }
+        }
+      }
+
+      function carregarSessao() {
+        socket.on("qrcodeLoad", (data) => {
+          document.getElementById("img1").src = num + ".png";
+        });
+        socket.emit("qrcodeLoad");
+      }
+    </script>
+  </body>
+</html>

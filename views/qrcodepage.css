@@ -1,0 +1,102 @@
+body {
+   color: black;
+   font-family: "Sofia", sans-serif;
+   background: #e3fdfc;
+}
+
+#container {
+   border-radius: 8px;
+   background-color: rgba(233, 227, 227, .6);
+   border-style: none;
+   outline: none;
+   position: absolute;
+}
+
+#container h2 {
+   font-size: 25px;
+   font-style: normal;
+   font-weight: 500;
+   color: #000000;
+}
+
+#idInput {
+   width: 80%;
+   height: 2em;
+   border-style: none;
+   border-radius: 110px;
+   color: #000000;
+   font-size: large;
+   text-align: center;    
+   margin-left: 8%;
+}
+
+#idInput:focus {
+   outline: none;
+}
+
+#criarQRCode {
+   position: absolute;
+   z-index: 4;
+   margin-top: -2%;
+   margin-left: 19.5%;
+}
+
+#criarQR {
+   margin-left: 15px;
+   border-radius: 8px;
+   background: #70b4b1; 
+   color: rgb(255, 255, 255);
+   font-size: 100%;
+   cursor: pointer;
+   border-color: #70b4b1;
+   border-style: none;
+   transition: background 0.3s, transform 0.3s, box-shadow 0.3s, cursor 0.3s;
+}
+
+#criarQR:hover {
+   background: #448380;
+   transform: scale(1.05);
+   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+#recarregarQR {
+   border-radius: 8px;
+   background: #68aaa7;
+   color: rgb(255, 255, 255);
+   font-size: 90%;
+   transition: background 0.3s, transform 0.3s, box-shadow 0.3s, cursor 0.3s;
+   cursor: pointer;
+   margin-top: 8%;
+   margin-left: 23%;
+}
+
+#recarregarQR:hover {
+   background: #448380;
+   transform: scale(1.05);
+   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+#load {
+   position: absolute;
+   margin-left: 29%;
+}
+
+.loader {
+   width: 48px;
+   height: 48px;
+   border: 5px solid #70b4b1;
+   border-bottom-color: transparent;
+   border-radius: 50%;
+   display: inline-block;
+   box-sizing: border-box;
+   animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+0% {
+      transform: rotate(0deg);
+}
+100% {
+      transform: rotate(360deg);
+}
+} 

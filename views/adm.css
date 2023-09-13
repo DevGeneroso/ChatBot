@@ -1,0 +1,60 @@
+body {
+   color: black;
+   font-family: "Sofia", sans-serif;
+   background: #e3fdfc;
+}
+
+#container {
+   position: fixed;
+   border-radius: 8px;
+   /*background: #baf1ee;*/
+   background: rgba(233, 227, 227, .6);
+}
+
+#container h2 {
+   font-size: 20px;
+   font-style: normal;
+   font-weight: 700;
+   color: #000000;
+}
+
+#tokenInput {
+   border-style: none;
+   border-radius: 110px;
+   color: #000000;
+   font-size: large;
+   text-align: center;
+   padding: 2%;
+}
+
+#tokenInput:focus {
+   outline: none;
+}
+
+#attSess {
+   border-radius: 8px;
+   background: #68aaa7; 
+   color: rgb(255, 255, 255);
+   font-size: 110%;
+   border-style: none;
+   transition: background 0.3s, transform 0.3s, box-shadow 0.3s, cursor 0.3s;
+   cursor: pointer;
+   padding: 3%;
+}
+
+#attSess:hover {
+   background: #448380;
+   transform: scale(1.05);
+   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+#btn-del {
+   margin-top: -1.3%;
+   width: 1.1em;
+   height: 1.1em;
+}
+
+#btn-del:hover {
+   transform: scale(1.2);
+   cursor: pointer;
+}

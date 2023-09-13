@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+
+    <title>Total Sistemas - BOT</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./adm-login.css" />
+    <link rel="stylesheet" href="./bootstrap-5.0.2-dist/css/bootstrap.min.css">
+  </head>
+
+  <body>
+    <div class="d-flex flex-row bg-image justify-content-center align-items-center" style="background-image: url('./logoFinal2.jpg'); height: 100vh;">
+      <div id="container" class="row-sm p-5 my-5 border">
+        <div class="row-sm-4">
+          <div>
+            <h2>Login Total</h2>
+            <br/>
+            <div>
+              <input id="loginInput" placeholder="Insira o login">
+              <br/>
+              <br/>
+              <input id="senhaInput" placeholder="Insira a senha" type="password">
+              <br/>
+              <br/>
+              <br/>
+              <div id="container2">
+                <div class="d-flex align-items-center" style="margin-top: -10%;">
+                  <button id="loginTotal" onclick="login()">Login</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const socket = io("http://localhost:3000");
+      function login() {
+        const login = document.getElementById("loginInput").value.trim();
+        const senha = document.getElementById("senhaInput").value.trim();
+        socket.emit("login-adm", login, senha);
+      }
+
+      socket.on("loginAdmResponse", (valido) => {
+        if (valido) {
+          window.location.href = "/adm";
+        } else {
+          alert("Credenciais incorretas!");
+        }
+      });
+    </script>
+  </body>
+</html>

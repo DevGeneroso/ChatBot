@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+
+    <title>Total Sistemas - BOT</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./homepage.css" />
+    <link rel="stylesheet" href="./bootstrap-5.0.2-dist/css/bootstrap.min.css">
+  </head>
+
+  <body>
+    <div class="d-flex flex-row bg-image justify-content-center align-items-center" style=" background-size: cover; background-image: url('./logoFinal2.jpg'); height: 100vh;">
+      <div id="container" class="row-sm p-5 my-5 border">
+        <div class="row-sm-4">
+          <div>
+            <h2>Insira o Token</h2>
+            <br/>
+            <div>
+              <input id="tokenInput" placeholder="Insira o Token">
+              <br/>
+              <br/><br/>
+              <div id="container2">
+                <div class="d-flex align-items-center" style="margin-top: -10%;">
+                  <button id="loginQr" onclick="login()">Login</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const socket = io("http://localhost:3000");
+      function login() {
+        const token = document.getElementById("tokenInput").value;
+        socket.emit("login", token);
+      }
+
+      socket.on("loginResponse", (isValid) => {
+        if (isValid) {
+          window.location.href = "/home";
+        } else {
+          alert("Insira o token de login!");
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+export * from './db_config_bd';
