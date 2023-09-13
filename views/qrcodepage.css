@@ -42,7 +42,6 @@ body {
 }
 
 #criarQR {
-   margin-left: 15px;
    border-radius: 8px;
    background: #70b4b1; 
    color: rgb(255, 255, 255);
