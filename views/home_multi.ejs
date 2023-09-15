@@ -81,7 +81,7 @@
                 document.getElementById("load").style = "z-index: 3;";
 
                 socket.on("qrcode", (data) => {
-                  document.getElementById("divimg1").style = "position: absolute; margin-left: 6%; width: 13.48em; height: 13.48em; z-index: 5;";
+                  document.getElementById("divimg1").style = "position: absolute; margin-left: 5%; width: 17.48em; height: 17.48em; z-index: 5;";
                   document.getElementById("img1").src = num + ".png";
                   document.getElementById("img1").style = "width: 100%; height: 100%;"
                 });
@@ -95,7 +95,7 @@
             })
 
             socket.on("logado", () => {
-              document.getElementById("divimg1").style = "position: absolute; margin-left: 6%; width: 13.48em; height: 13.48em; z-index: 5;";
+              document.getElementById("divimg1").style = "position: absolute; margin-left: 13%; width: 13.48em; height: 13.48em; z-index: 5;";
               document.getElementById("img1").src = "./conectado.jpg";
               document.getElementById("img1").style = "width: 100%; height: 100%;"
             })

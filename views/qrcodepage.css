@@ -50,6 +50,7 @@ body {
    border-color: #70b4b1;
    border-style: none;
    transition: background 0.3s, transform 0.3s, box-shadow 0.3s, cursor 0.3s;
+   margin-left: 10px;
 }
 
 #criarQR:hover {
@@ -89,6 +90,7 @@ body {
    display: inline-block;
    box-sizing: border-box;
    animation: rotation 1s linear infinite;
+   margin-left: 10px;
 }
 
 @keyframes rotation {
